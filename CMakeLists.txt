@@ -7,6 +7,6 @@ set(SOURCE_FILES Comparison.h Monitor.cpp Monitor.h Notifiee.h Notifier.h PID.h
 		ExecuteOnScopeExit.cpp ExecuteOnScopeExit.hpp TraceStack.cpp
 		TraceStack.hpp ThreadOStream.hpp PrefixFunctionOStream.hpp
 		DelimiterBufferedOStream.hpp VerboseLog.hpp ThreadName.cpp
-		ThreadName.hpp PrefixOStream.hpp CSVReader.cpp CSVReader.hpp)
+		ThreadName.hpp PrefixOStream.hpp CSVReader.cpp CSVReader.hpp Base64.cpp Base64.hpp)
 add_library(${PROJECT_NAME} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} ${Boost_LIBRARIES})
