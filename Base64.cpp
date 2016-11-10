@@ -4,7 +4,7 @@
 
 #include "Base64.hpp"
 
-std::string flabs::Base64::base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+const std::string flabs::Base64::base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	"abcdefghijklmnopqrstuvwxyz"
 	"0123456789+/";
 

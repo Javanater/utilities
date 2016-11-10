@@ -22,21 +22,23 @@ namespace flabs
 	{
 		private:
 			std::function<void(Args...)> f;
-			std::tuple<Args...> args;
-			uint64_t timeout;
-			std::atomic<bool> timedout;
-			std::atomic<bool> keepWatching;
-			std::atomic<uint64_t> lastUpdatedTime;
-			std::thread watchdogThread;
+			std::tuple<Args...>          args;
+			uint64_t                     timeout;
+			std::atomic<bool>            timedout;
+			std::atomic<bool>            keepWatching;
+			std::atomic<uint64_t>        lastUpdatedTime;
+			std::thread                  watchdogThread;
 
 		public:
 			/**
 			 * Creates a Watchdog object with a timeout of <code>timeout</code> milliseconds.
 			 */
-			Watchdog(std::function<void(Args...)> func, Args&&... args, uint64_t timeout = 1000) :
-					f(func), args(std::make_tuple(std::forward<Args>(args)...)), timeout(timeout),
-					    timedout(false), keepWatching(true), lastUpdatedTime(millis()),
-					    watchdogThread(&Watchdog::watch, this)
+			Watchdog(std::function<void(Args...)> func, Args&& ... args,
+				uint64_t timeout = 1000) :
+				f(func), args(std::make_tuple(std::forward<Args>(args)...)),
+				timeout(timeout), timedout(false), keepWatching(true),
+				lastUpdatedTime(millis()),
+				watchdogThread(&Watchdog::watch, this)
 			{
 			}
 
@@ -52,7 +54,7 @@ namespace flabs
 			 *
 			 * return - a reference to this object
 			 */
-			Watchdog& update(Args&&... args)
+			Watchdog& update(Args&& ... args)
 			{
 				this->args = std::make_tuple(std::forward<Args>(args)...);
 				return *this;
@@ -84,7 +86,8 @@ namespace flabs
 			{
 				while (keepWatching)
 				{
-					if (isleep(timeout - (millis() - lastUpdatedTime)) || !keepWatching)
+					if (isleep(timeout - (millis() - lastUpdatedTime)) ||
+						!keepWatching)
 						break;
 
 					if (!timedout && millis() - lastUpdatedTime >= timeout)
