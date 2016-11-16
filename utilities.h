@@ -125,6 +125,41 @@ namespace flabs
 		return out.str();
 	}
 
+	template<typename MAP>
+	struct DefaultValueMap
+	{
+			typedef typename MAP::key_type    K;
+			typedef typename MAP::mapped_type V;
+			typedef typename MAP::iterator    CIT;
+
+			DefaultValueMap(MAP& m, V default_val) :
+				m_map(m), default_val(default_val)
+			{
+			}
+
+			V& operator[](K& key)
+			{
+				CIT it = m_map.find(key);
+				if (it == m_map.end())
+				{
+					V& v = m_map[key];
+					v = default_val;
+					return v;
+				}
+				return it->second;
+			}
+
+		private:
+			MAP& m_map;
+			V default_val;
+	};
+
+	template<typename MAP>
+	DefaultValueMap<MAP> wrapMap(MAP& m, typename MAP::mapped_type default_val)
+	{
+		return DefaultValueMap<MAP>(m, default_val);
+	}
+
 	inline std::string toStandardTime(double seconds)
 	{
 		const double       MILLISECONDS = .001;
