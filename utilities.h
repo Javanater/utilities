@@ -24,8 +24,8 @@
 #define STREAM_POINTER(T)\
 inline std::ostream& operator<<(std::ostream& out, const T* pointer)\
 {\
-    if (pointer == NULL)\
-        out << "NULL";\
+    if (pointer == nullptr)\
+        out << "nullptr";\
     else\
         out << *pointer;\
     return out;\
@@ -76,8 +76,8 @@ namespace flabs
 	 */
 	inline uint64_t nanos()
 	{
-		return std::chrono::high_resolution_clock::now().time_since_epoch()
-			.count();
+		return (uint64_t) std::chrono::high_resolution_clock::now()
+			.time_since_epoch().count();
 	}
 
 	/**
@@ -85,7 +85,7 @@ namespace flabs
 	 */
 	inline uint64_t micros()
 	{
-		return std::chrono::duration_cast<std::chrono::microseconds>(
+		return (uint64_t) std::chrono::duration_cast<std::chrono::microseconds>(
 			std::chrono::high_resolution_clock::now().time_since_epoch())
 			.count();
 	}
@@ -95,7 +95,7 @@ namespace flabs
 	 */
 	inline uint64_t millis()
 	{
-		return std::chrono::duration_cast<std::chrono::milliseconds>(
+		return (uint64_t) std::chrono::duration_cast<std::chrono::milliseconds>(
 			std::chrono::high_resolution_clock::now().time_since_epoch())
 			.count();
 	}
