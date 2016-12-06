@@ -39,12 +39,17 @@ boost::posix_time::ptime parseDateTime(std::string dateTime, std::string format,
 
 std::time_t secondsSinceEpoch(const boost::posix_time::ptime& pt);
 
+boost::posix_time::ptime toPTime(const std::time_t& secondsSinceEpoch);
+
 std::time_t secondsSinceEpoch(std::string dateTime, std::string format,
 	std::locale locale1 = std::locale::classic());
 
 std::time_t ticksSinceEpoch(const boost::posix_time::ptime& pt);
 
 std::time_t ticksSinceEpoch(std::string dateTime, std::string format,
+	std::locale locale1 = std::locale::classic());
+
+std::string formatDateTime(std::time_t secondsSinceEpoch, std::string format,
 	std::locale locale1 = std::locale::classic());
 
 template<class T, class ... Args>
