@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.5)
 project(Utilities)
-set(SOURCE_FILES Comparison.h Monitor.cpp Monitor.h Notifiee.h Notifier.h PID.h
-		Pretty.h Pretty.cpp PrettySequence.h PrettySequence.cpp
-		StringUtilities.h StringUtilities.cpp Timer.h Timer.cpp utilities.h
-		utilities.cpp Watchdog.h ScopeCounter.hpp FileQueue.hpp
+set(SOURCE_FILES Comparison.hpp Monitor.cpp Monitor.hpp Notifiee.hpp Notifier.hpp PID.hpp
+		Pretty.hpp Pretty.cpp PrettySequence.hpp PrettySequence.cpp
+		StringUtilities.hpp StringUtilities.cpp Timer.hpp Timer.cpp utilities.hpp
+		utilities.cpp Watchdog.hpp ScopeCounter.hpp FileQueue.hpp
 		ExecuteOnScopeExit.cpp ExecuteOnScopeExit.hpp TraceStack.cpp
 		TraceStack.hpp ThreadOStream.hpp PrefixFunctionOStream.hpp
 		DelimiterBufferedOStream.hpp VerboseLog.hpp ThreadName.cpp

@@ -11,8 +11,8 @@
 #include <map>
 #include <list>
 #include <string>
-#include "utilities.h"
-#include "StringUtilities.h"
+#include "utilities.hpp"
+#include "StringUtilities.hpp"
 
 namespace flabs
 {

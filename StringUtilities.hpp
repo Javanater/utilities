@@ -5,7 +5,7 @@
 #include <vector>
 #include <stdarg.h>
 #include <list>
-#include "utilities.h"
+#include "utilities.hpp"
 
 namespace flabs
 {

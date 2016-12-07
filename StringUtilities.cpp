@@ -1,4 +1,4 @@
-#include "StringUtilities.h"
+#include "StringUtilities.hpp"
 #include <cctype>
 #include <cstring>
 #include <functional>

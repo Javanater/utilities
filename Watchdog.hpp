@@ -12,8 +12,8 @@
 #include <thread>
 #include <tuple>
 #include <atomic>
-#include "utilities.h"
-#include "Notifier.h"
+#include "utilities.hpp"
+#include "Notifier.hpp"
 
 namespace flabs
 {

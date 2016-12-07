@@ -8,7 +8,7 @@
 #ifndef PRETTY_H_
 #define PRETTY_H_
 
-#include "PrettySequence.h"
+#include "PrettySequence.hpp"
 
 namespace flabs
 {

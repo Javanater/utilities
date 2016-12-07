@@ -11,7 +11,7 @@
 #include <list>
 #include <functional>
 #include <tuple>
-#include "Notifiee.h"
+#include "Notifiee.hpp"
 
 namespace flabs
 {

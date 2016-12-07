@@ -5,8 +5,8 @@
  *      Author: Madison
  */
 
-#include "Timer.h"
-#include "utilities.h"
+#include "Timer.hpp"
+#include "utilities.hpp"
 
 using namespace std;
 

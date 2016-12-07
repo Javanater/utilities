@@ -5,8 +5,8 @@
  *      Author: Madison
  */
 
-#include "utilities.h"
-#include "Monitor.h"
+#include "utilities.hpp"
+#include "Monitor.hpp"
 #include <map>
 
 using namespace std;
