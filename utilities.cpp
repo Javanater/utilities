@@ -61,6 +61,20 @@ time_t ticksSinceEpoch(string dateTime, string format, locale locale1)
 	return ticksSinceEpoch(parseDateTime(dateTime, format, locale1));
 }
 
+/**
+ * %d - day of month zero padded
+ * %m - month number, 0 padded, January=1
+ * %B - month full name
+ * %b - month abr.
+ * %a - day of week abr.
+ *
+ * http://www.boost.org/doc/libs/1_35_0/doc/html/date_time/date_time_io.html#date_time.format_flags
+ *
+ * @param secondsSinceEpoch
+ * @param format
+ * @param locale1
+ * @return
+ */
 string formatTime(time_t secondsSinceEpoch, string format, locale locale1)
 {
 	locale        locale2(locale1, new time_facet(format.c_str()));
