@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 project(Utilities)
-set(SOURCE_FILES Comparison.hpp Monitor.cpp Monitor.hpp Notifiee.hpp Notifier.hpp PID.hpp
+set(SOURCE_FILES Comparison.hpp Monitor.cpp Monitor.hpp Notifier.hpp PID.hpp
 		Pretty.hpp Pretty.cpp PrettySequence.hpp PrettySequence.cpp
 		StringUtilities.hpp StringUtilities.cpp Timer.hpp Timer.cpp utilities.hpp
 		utilities.cpp Watchdog.hpp ScopeCounter.hpp FileQueue.hpp

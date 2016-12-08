@@ -49,7 +49,7 @@ std::time_t ticksSinceEpoch(const boost::posix_time::ptime& pt);
 std::time_t ticksSinceEpoch(std::string dateTime, std::string format,
 	std::locale locale1 = std::locale::classic());
 
-std::string formatDateTime(std::time_t secondsSinceEpoch, std::string format,
+std::string formatTime(std::time_t secondsSinceEpoch, std::string format,
 	std::locale locale1 = std::locale::classic());
 
 template<class T, class ... Args>
@@ -57,6 +57,38 @@ T* construct(Args&& ... args)
 {
 	return new T(std::forward<Args>(args)...);
 }
+
+template<class T>
+inline T min(T t)
+{
+	return t;
+};
+
+template<class T, class... Args>
+inline T min(T t, Args... args)
+{
+	return std::min(t, min<Args...>(args...));
+};
+
+template<class T>
+inline T max(T t)
+{
+	return t;
+};
+
+template<class T, class... Args>
+inline T max(T t, Args... args)
+{
+	return std::max(t, max<Args...>(args...));
+};
+
+template<class T, class... Args>
+inline std::pair<T, T> minmax(T t, Args... args)
+{
+	T minimum = std::min(t, min<Args...>(args...));
+	T maximum = std::max(t, max<Args...>(args...));
+	return std::make_pair(minimum, maximum);
+};
 
 /**
  * Sleeps for the specified number of milliseconds.

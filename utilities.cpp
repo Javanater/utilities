@@ -61,7 +61,7 @@ time_t ticksSinceEpoch(string dateTime, string format, locale locale1)
 	return ticksSinceEpoch(parseDateTime(dateTime, format, locale1));
 }
 
-string formatDateTime(time_t secondsSinceEpoch, string format, locale locale1)
+string formatTime(time_t secondsSinceEpoch, string format, locale locale1)
 {
 	locale        locale2(locale1, new time_facet(format.c_str()));
 	ostringstream os;
