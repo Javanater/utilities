@@ -9,7 +9,6 @@
 #include <vector>
 #include <thread>
 #include <mutex>
-#include <atomic>
 
 namespace flabs
 {
