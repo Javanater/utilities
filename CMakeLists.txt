@@ -1,5 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(Utilities)
+set(Boost_USE_STATIC_LIBS ON)
+find_package(Boost REQUIRED chrono system thread)
+include_directories(${Boost_INCLUDE_DIR})
 set(SOURCE_FILES Comparison.hpp Monitor.cpp Monitor.hpp Notifier.hpp PID.hpp
 		Pretty.hpp Pretty.cpp PrettySequence.hpp PrettySequence.cpp
 		StringUtilities.hpp StringUtilities.cpp Timer.hpp Timer.cpp utilities.hpp

@@ -10,12 +10,12 @@ const std::string flabs::Base64::base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 std::string flabs::Base64::encode(const std::string encoded)
 {
-	return std::__cxx11::string();
+	return std::string();
 }
 
 std::string flabs::Base64::decode(const std::string encoded_string)
 {
-	int           in_len = encoded_string.size();
+	int           in_len = (int) encoded_string.size();
 	int           i      = 0;
 	int           j      = 0;
 	int           in_    = 0;
@@ -30,7 +30,8 @@ std::string flabs::Base64::decode(const std::string encoded_string)
 		if (i == 4)
 		{
 			for (i = 0; i < 4; i++)
-				char_array_4[i] = base64_chars.find(char_array_4[i]);
+				char_array_4[i] = (unsigned char)
+					base64_chars.find(char_array_4[i]);
 
 			char_array_3[0] =
 				(char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
@@ -50,7 +51,8 @@ std::string flabs::Base64::decode(const std::string encoded_string)
 			char_array_4[j] = 0;
 
 		for (j = 0; j < 4; j++)
-			char_array_4[j] = base64_chars.find(char_array_4[j]);
+			char_array_4[j] = (unsigned char)
+				base64_chars.find(char_array_4[j]);
 
 		char_array_3[0] =
 			(char_array_4[0] << 2) + ((char_array_4[1] & 0x30) >> 4);
