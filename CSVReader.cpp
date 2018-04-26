@@ -2,7 +2,7 @@
 // Created by Madison on 10/7/2016.
 //
 
-#include "CSVReader.hpp"
+#include <utilities/CSVReader.hpp>
 
 using std::string;
 using std::exception;

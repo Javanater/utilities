@@ -12,7 +12,7 @@
 #include <functional>
 #include <queue>
 #include <atomic>
-#include "Monitor.hpp"
+#include <utilities/Monitor.hpp>
 
 namespace flabs
 {

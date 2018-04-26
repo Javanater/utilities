@@ -5,11 +5,11 @@
 #ifndef PROJECTS_LOG_HPP
 #define PROJECTS_LOG_HPP
 
-#include "FileQueue.hpp"
-#include "ThreadOStream.hpp"
-#include "PrefixFunctionOStream.hpp"
-#include "DelimiterBufferedOStream.hpp"
-#include "ThreadName.hpp"
+#include <utilities/FileQueue.hpp>
+#include <utilities/ThreadOStream.hpp>
+#include <utilities/PrefixFunctionOStream.hpp>
+#include <utilities/DelimiterBufferedOStream.hpp>
+#include <utilities/ThreadName.hpp>
 
 namespace flabs
 {

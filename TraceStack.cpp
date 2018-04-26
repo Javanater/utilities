@@ -3,7 +3,7 @@
 //
 
 #include <sstream>
-#include "TraceStack.hpp"
+#include <utilities/TraceStack.hpp>
 
 using std::map;
 using std::deque;

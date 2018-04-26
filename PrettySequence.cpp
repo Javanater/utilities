@@ -5,7 +5,7 @@
  *      Author: Madison
  */
 
-#include "PrettySequence.hpp"
+#include <utilities/PrettySequence.hpp>
 
 namespace flabs
 {

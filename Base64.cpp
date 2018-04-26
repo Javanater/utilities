@@ -2,7 +2,7 @@
 // Created by Madison on 10/31/2016.
 //
 
-#include "Base64.hpp"
+#include <utilities/Base64.hpp>
 
 const std::string flabs::Base64::base64_chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	"abcdefghijklmnopqrstuvwxyz"

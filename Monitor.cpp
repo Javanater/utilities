@@ -5,7 +5,7 @@
  *      Author: Madison
  */
 
-#include "Monitor.hpp"
+#include <utilities/Monitor.hpp>
 #include <chrono>
 
 using namespace std;

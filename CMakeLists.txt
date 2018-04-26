@@ -46,21 +46,20 @@ set(src
 set(tool_dest "bin")
 set(include_dest "include/${PROJECT_NAME}")
 set(main_lib_dest "lib/${PROJECT_NAME}")
-set(lib_dest ${main_lib_dest}/${CMAKE_BUILD_TYPE}")
+set(lib_dest "${main_lib_dest}/${CMAKE_BUILD_TYPE}")
 
 set(Boost_USE_STATIC_LIBS ON)
 find_package(Boost REQUIRED chrono system thread)
 
 add_library(${PROJECT_NAME} ${header} ${src})
 
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/include ${CMAKE_CURRENT_BINARY_DIR})
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> # for headers when building
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}> # for config_impl.hpp when building
     $<INSTALL_INTERFACE:${include_dest}> # for client in install mode
-    $<INSTALL_INTERFACE:${lib_dest}> # for config_impl.hpp in install mode)
+	)
 
-target_include_directories(${PROJECT_NAME} ${Boost_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PRIVATE
+	$<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
 install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME} DESTINATION "${lib_dest}")
 

@@ -5,7 +5,7 @@
  *      Author: Madison
  */
 
-#include "Pretty.hpp"
+#include <utilities/Pretty.hpp>
 
 namespace flabs
 {

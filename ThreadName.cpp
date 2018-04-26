@@ -2,7 +2,7 @@
 // Created by Madison on 9/15/2016.
 //
 
-#include "ThreadName.hpp"
+#include <utilities/ThreadName.hpp>
 
 std::map<std::thread::id, flabs::ThreadName::threadname>
 	flabs::ThreadName::names;
