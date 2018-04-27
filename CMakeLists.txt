@@ -45,13 +45,15 @@ set(src
 
 set(tool_dest "bin")
 set(include_dest "include/${PROJECT_NAME}")
-set(main_lib_dest "lib/${PROJECT_NAME}")
+set(main_lib_dest "lib")
 set(lib_dest "${main_lib_dest}/${CMAKE_BUILD_TYPE}")
 
 set(Boost_USE_STATIC_LIBS ON)
 find_package(Boost REQUIRED chrono system thread)
 
 add_library(${PROJECT_NAME} ${header} ${src})
+
+set(INSTALL_SUFFIX /${PROJECT_NAME})
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> # for headers when building
@@ -61,8 +63,20 @@ target_include_directories(${PROJECT_NAME} PUBLIC
 target_include_directories(${PROJECT_NAME} PRIVATE
 	$<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
-install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME} DESTINATION "${lib_dest}")
+target_include_directories(pugixml PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
+	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}${INSTALL_SUFFIX}>)
 
-install(FILES ${header} DESTINATION "${include_dest}")
+if(USE_POSTFIX AND CMAKE_CONFIGURATION_TYPES)
+	set_target_properties(pugixml PROPERTIES DEBUG_POSTFIX "_d" MINSIZEREL_POSTFIX "_m" RELWITHDEBINFO_POSTFIX "_r")
+endif()
 
-install(EXPORT ${PROJECT_NAME} DESTINATION "${lib_dest}")
+install(TARGETS pugixml EXPORT pugixml-config
+	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}${INSTALL_SUFFIX}
+	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}${INSTALL_SUFFIX}
+	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+install(FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}${INSTALL_SUFFIX})
+install(EXPORT pugixml-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/pugixml)
+
+configure_file(scripts/pugixml.pc.in ${PROJECT_BINARY_DIR}/pugixml.pc @ONLY)
+install(FILES ${PROJECT_BINARY_DIR}/pugixml.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
