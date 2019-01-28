@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 project(utilities)
 
 set(header_path "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}")
-set(header
+set(HEADERS
 	${header_path}/Comparison.hpp
 	${header_path}/Monitor.hpp
 	${header_path}/Notifier.hpp
@@ -51,32 +51,27 @@ set(lib_dest "${main_lib_dest}/${CMAKE_BUILD_TYPE}")
 set(Boost_USE_STATIC_LIBS ON)
 find_package(Boost REQUIRED chrono system thread)
 
-add_library(${PROJECT_NAME} ${header} ${src})
+add_library(${PROJECT_NAME} ${HEADERS} ${src})
 
 set(INSTALL_SUFFIX /${PROJECT_NAME})
-
-target_include_directories(${PROJECT_NAME} PUBLIC
-    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include> # for headers when building
-    $<INSTALL_INTERFACE:${include_dest}> # for client in install mode
-	)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
 	$<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
-target_include_directories(pugixml PUBLIC
-	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/src>
+target_include_directories(${PROJECT_NAME} PUBLIC
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}>
 	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}${INSTALL_SUFFIX}>)
 
 if(USE_POSTFIX AND CMAKE_CONFIGURATION_TYPES)
-	set_target_properties(pugixml PROPERTIES DEBUG_POSTFIX "_d" MINSIZEREL_POSTFIX "_m" RELWITHDEBINFO_POSTFIX "_r")
+	set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d" MINSIZEREL_POSTFIX "_m" RELWITHDEBINFO_POSTFIX "_r")
 endif()
 
-install(TARGETS pugixml EXPORT pugixml-config
+install(TARGETS ${PROJECT_NAME} EXPORT ${PROJECT_NAME}-config
 	ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}${INSTALL_SUFFIX}
 	LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}${INSTALL_SUFFIX}
 	RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 install(FILES ${HEADERS} DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}${INSTALL_SUFFIX})
-install(EXPORT pugixml-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/pugixml)
+install(EXPORT ${PROJECT_NAME}-config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
 
-configure_file(scripts/pugixml.pc.in ${PROJECT_BINARY_DIR}/pugixml.pc @ONLY)
-install(FILES ${PROJECT_BINARY_DIR}/pugixml.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
+configure_file(scripts/${PROJECT_NAME}.pc.in ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc @ONLY)
+install(FILES ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.pc DESTINATION ${CMAKE_INSTALL_PREFIX}/lib/pkgconfig)
