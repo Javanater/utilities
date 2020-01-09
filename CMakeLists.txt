@@ -31,25 +31,25 @@ set(HEADERS
 	${header_path}/parallel_for.hpp)
 
 set(src
-	Monitor.cpp
-	Pretty.cpp
-	PrettySequence.cpp
-	StringUtilities.cpp
-	Timer.cpp
-	utilities.cpp
-	ExecuteOnScopeExit.cpp
-	TraceStack.cpp
-	ThreadName.cpp
-	CSVReader.cpp
-	Base64.cpp)
+	src/Monitor.cpp
+	src/Pretty.cpp
+	src/PrettySequence.cpp
+	src/StringUtilities.cpp
+	src/Timer.cpp
+	src/utilities.cpp
+	src/ExecuteOnScopeExit.cpp
+	src/TraceStack.cpp
+	src/ThreadName.cpp
+	src/CSVReader.cpp
+	src/Base64.cpp
+)
 
 set(tool_dest "bin")
 set(include_dest "include/${PROJECT_NAME}")
 set(main_lib_dest "lib")
 set(lib_dest "${main_lib_dest}/${CMAKE_BUILD_TYPE}")
 
-set(Boost_USE_STATIC_LIBS ON)
-find_package(Boost REQUIRED chrono system thread)
+find_package(Boost REQUIRED chrono thread)
 
 add_library(${PROJECT_NAME} ${HEADERS} ${src})
 
