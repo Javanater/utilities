@@ -2,8 +2,8 @@
 // Created by Madison on 12/8/2016.
 //
 
-#include <Utilities/utilities.hpp>
-#include <Utilities/parallel_for.hpp>
+#include <utilities/utilities.hpp>
+#include <utilities/parallel_for.hpp>
 #include "gtest/gtest.h"
 
 using namespace std;

@@ -2,7 +2,7 @@
 // Created by Madison on 8/26/2016.
 //
 
-#include <Utilities/Watchdog.hpp>
+#include <utilities/Watchdog.hpp>
 #include "gtest/gtest.h"
 
 using namespace std;

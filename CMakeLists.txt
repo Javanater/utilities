@@ -60,7 +60,22 @@ target_include_directories(${PROJECT_NAME} PRIVATE
 
 target_include_directories(${PROJECT_NAME} PUBLIC
 	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/${PROJECT_NAME}>
+	$<BUILD_INTERFACE:${CMAKE_CURRENT_LIST_DIR}/include>
 	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}${INSTALL_SUFFIX}>)
+
+find_package(Boost COMPONENTS unit_test_framework REQUIRED)
+find_package(GTest REQUIRED)
+
+add_executable(${PROJECT_NAME}_Test
+	test/parallel_forTest.cpp
+    test/WatchdogTest.cpp
+)
+
+target_link_libraries(${PROJECT_NAME}_Test
+	${PROJECT_NAME}
+	Boost::unit_test_framework
+    GTest::Main
+)
 
 if(USE_POSTFIX AND CMAKE_CONFIGURATION_TYPES)
 	set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "_d" MINSIZEREL_POSTFIX "_m" RELWITHDEBINFO_POSTFIX "_r")

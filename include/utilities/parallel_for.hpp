@@ -12,9 +12,8 @@
 
 namespace flabs
 {
-template<class Iterator>
-void
-parallel_for(Iterator begin, Iterator end, auto fn, uint32_t maxThreads = 8)
+template<class Iterator, class Fn>
+void parallel_for(Iterator begin, Iterator end, Fn fn, uint32_t maxThreads = 8)
 {
 	std::vector<std::thread> threadPool(maxThreads);
 	std::mutex               beginMutex;
@@ -53,8 +52,8 @@ parallel_for(Iterator begin, Iterator end, auto fn, uint32_t maxThreads = 8)
 		}
 }
 
-template<class List>
-void parallel_for(List& list, auto fn, uint32_t maxThreads = 8)
+template<class List, class Fn>
+void parallel_for(List& list, Fn fn, uint32_t maxThreads = 8)
 {
 	parallel_for(std::begin(list), std::end(list), fn, maxThreads);
 }
