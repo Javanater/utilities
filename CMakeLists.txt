@@ -2,6 +2,8 @@
 
 cmake_minimum_required(VERSION 3.5)
 
+include_guard(GLOBAL)
+
 project(utilities)
 
 set(header_path "${PROJECT_SOURCE_DIR}/include/${PROJECT_NAME}")
