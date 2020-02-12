@@ -29,7 +29,6 @@ set(HEADERS
 	${header_path}/ThreadName.hpp
 	${header_path}/PrefixOStream.hpp
 	${header_path}/CSVReader.hpp
-	${header_path}/Base64.hpp
 	${header_path}/parallel_for.hpp)
 
 set(src
@@ -43,7 +42,6 @@ set(src
 	src/TraceStack.cpp
 	src/ThreadName.cpp
 	src/CSVReader.cpp
-	src/Base64.cpp
 )
 
 set(tool_dest "bin")
